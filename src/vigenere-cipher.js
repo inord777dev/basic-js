@@ -20,12 +20,47 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default class VigenereCipheringMachine {
-  encrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor(direct = true) {
+    this.direct  = direct;
+    this.start = 'a'.toUpperCase().charCodeAt(0);
+    this.finish = 'z'.toUpperCase().charCodeAt(0);
+   }
+
+  encrypt(message, key) {
+    let result = [];
+    message = message.toUpperCase();
+    //key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))
+    key =  'alphon se alphonse'.toUpperCase();
+    let x;
+    for (let i = 0; i < message.length; i++) {
+      x = message[i].charCodeAt(0);
+      if (x >= this.start && x <= this.finish) {
+        x = message[i].charCodeAt(0) + (key[i].charCodeAt(0) - this.start);
+        if (x > this.finish) {
+          x = this.start + x - this.finish - 1;
+        }
+      }
+      result.push(String.fromCharCode(x));
+    }
+    return this.direct ? result.join('') : result.reverse().join('');
   }
-  decrypt() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+
+  decrypt(message, key) {
+    let result = [];
+    message = message.toUpperCase();
+    key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))
+    //key =  'alphon se alphonse'.toUpperCase();
+    let x;
+    for (let i = 0; i < message.length; i++) {
+      x = message[i].charCodeAt(0);
+      if (x >= this.start && x <= this.finish) {
+        x = this.start + x - key[i].charCodeAt(0);
+        if (x > this.finish) {
+          x = this.start + x - this.finish - 1;
+        }
+      }
+      result.push(String.fromCharCode(x));
+    }
+    return this.direct ? result.join('') : result.reverse().join('');
   }
 }
