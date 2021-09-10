@@ -14,7 +14,9 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function transform(arr) {
-  let res = [], discard = false, double = false;
+  if (typeof(array) == 'Array') throw '\'arr\' parameter must be an instance of the Array!'
+
+  let res = [];
   arr.forEach( (x, i, arr) => {
     switch (x) {
       case '--discard-next':
@@ -44,5 +46,6 @@ export default function transform(arr) {
         break;
     } 
   })
+  
   return res;
 }
