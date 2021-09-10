@@ -29,8 +29,8 @@ export default class VigenereCipheringMachine {
   encrypt(message, key) {
     let result = [];
     message = message.toUpperCase();
-    //key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))
-    key =  'alphon se alphonse'.toUpperCase();
+    key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))
+    //key =  'alphon se alphonse'.toUpperCase();
     let x;
     for (let i = 0; i < message.length; i++) {
       x = message[i].charCodeAt(0);
@@ -55,8 +55,8 @@ export default class VigenereCipheringMachine {
       x = message[i].charCodeAt(0);
       if (x >= this.start && x <= this.finish) {
         x = this.start + x - key[i].charCodeAt(0);
-        if (x > this.finish) {
-          x = this.start + x - this.finish - 1;
+        if (x < this.start) {
+          x = this.finish - (this.start - x) + 1;
         }
       }
       result.push(String.fromCharCode(x));
