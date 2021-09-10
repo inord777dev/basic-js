@@ -39,9 +39,12 @@ export default class VigenereCipheringMachine {
         if (x > this.finish) {
           x = this.start + x - this.finish - 1;
         }
+      } else {
+        key = key.slice(0, i) + message[i] + key.slice(i)
       }
       result.push(String.fromCharCode(x));
     }
+    console.log(key)
     return this.direct ? result.join('') : result.reverse().join('');
   }
 
@@ -58,6 +61,8 @@ export default class VigenereCipheringMachine {
         if (x < this.start) {
           x = this.finish - (this.start - x) + 1;
         }
+      } else {
+        key = key.slice(0, i) + message[i] + key.slice(i)
       }
       result.push(String.fromCharCode(x));
     }
