@@ -14,7 +14,7 @@ import { NotImplementedError } from '../extensions/index.js';
  * 
  */
 export default function transform(arr) {
-  if (typeof(array) == 'Array') throw '\'arr\' parameter must be an instance of the Array!'
+  if (!Array.isArray(arr)) throw new Error('\'arr\' parameter must be an instance of the Array!')
 
   let res = [];
   arr.forEach( (x, i, arr) => {
@@ -25,17 +25,17 @@ export default function transform(arr) {
         }
         break;
       case '--discard-prev':
-        if (res.length) {
+        if (res.length - 2 && arr[i - 1] != 'skip') {
           res.pop()
         }
         break;
       case '--double-next':
-        if (i < arr.length) {
+        if (i < arr.length - 1 && arr[i + 1] != 'skip') {
           res.push(arr[i + 1])
         }
         break;
       case '--double-prev':
-        if (i > 0) {
+        if (i > 0 && arr[i - 1] != 'skip') {
           res.push(arr[i - 1])
         }
         break;
