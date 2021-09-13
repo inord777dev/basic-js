@@ -19,17 +19,17 @@ export default function repeater(str, options) {
   let rpt = '', rptAd = '';
 
   let additionSeparator = options.additionSeparator ? options.additionSeparator : '|';
-  if (options.additionRepeatTimes) {
-    for (let j = 0; j < options.additionRepeatTimes; j++) {
-      rptAd += '' + options.addition + (j == options.additionRepeatTimes - 1 ? '' : additionSeparator);
+  let additionRepeatTimes = options.additionRepeatTimes ? options.additionRepeatTimes : 1;
+  if (options.addition) {
+    for (let j = 0; j < additionRepeatTimes; j++) {
+      rptAd += '' + options.addition + (j == additionRepeatTimes - 1 ? '' : additionSeparator);
     }
   }
 
   let separator = options.separator ? options.separator : '+';
-  if (options.repeatTimes) {
-    for (let i = 0; i < options.repeatTimes; i++) {
-      rpt += '' + str + rptAd + (i == options.repeatTimes - 1 ? ' ' : separator);
-    }
+  let repeatTimes = options.repeatTimes ? options.repeatTimes : 1;
+  for (let i = 0; i < repeatTimes; i++) {
+    rpt += '' + str + rptAd + (i == repeatTimes - 1 ? '' : separator);
   }
 
   return rpt;

@@ -14,10 +14,12 @@ import { NotImplementedError } from '../extensions/index.js';
  *
  */
 export default function createDreamTeam(members) {
+  if (!Array.isArray(members)) return false
+
   let name = [];
   members.forEach( x => {
     if (typeof x === 'string' && x.length) {
-      name.push(x.charAt(0).toUpperCase())
+      name.push(x.trim().charAt(0).toUpperCase())
     }
   })
   return name.length ? name.sort().join("") : false
