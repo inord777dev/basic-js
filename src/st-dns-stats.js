@@ -24,11 +24,12 @@ import { NotImplementedError } from '../extensions/index.js';
  */
 export default function getDNSStats(domains) {
   const result = {}
-  let parts, address;
+  let parts, address ;
   domains.forEach( x => {
     parts =  x.split('.');
+    address = '';
     for (let i = parts.length - 1; i >= 0; i--) {
-      address = '.' + parts[i];
+      address += '.' + parts[i];
       if (!result.hasOwnProperty(address)) {
         result[address] = 0;
       }

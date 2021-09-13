@@ -20,7 +20,10 @@ export default {
     if (!(Number(position) === position && position % 1 === 0)
      || position < 1
      || position > this.result.length )
-      throw 'You can\'t remove incorrect link!'
+     {
+      this.result.length = 0
+      throw new Error('You can\'t remove incorrect link!')
+     }
     this.result.splice(position - 1, 1)
     return this;
   },
@@ -31,8 +34,10 @@ export default {
   },
 
   finishChain() {
-    return this.result.map( (x, i) => {
-      return `(${x})${i == this.result.length - 1 ? '' : '~~'}`
+    const result = this.result.map( (x, i) => {
+      return `( ${x} )${i == this.result.length - 1 ? '' : '~~'}`
     }).join('')
+    this.result.length = 0;
+    return result;
   }
 }

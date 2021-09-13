@@ -27,6 +27,8 @@ export default class VigenereCipheringMachine {
    }
 
   encrypt(message, key) {
+    if (message == undefined || key == undefined) throw new Error('Incorrect arguments!')
+
     let result = [];
     message = message.toUpperCase();
     key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))
@@ -48,6 +50,8 @@ export default class VigenereCipheringMachine {
   }
 
   decrypt(message, key) {
+    if (message == undefined || key == undefined) throw new Error('Incorrect arguments!')
+
     let result = [];
     message = message.toUpperCase();
     key = key.toUpperCase().repeat(Math.ceil(message.length / key.length))

@@ -12,9 +12,10 @@ import { NotImplementedError } from '../extensions/index.js';
  * Strings have 3 common characters - 2 "a"s and 1 "c".
  */
 export default function getCommonCharacterCount(s1, s2) {
-  let count = 0
+  let count = 0;
   for (let x of s1) {
     if (s2.includes(x)) {
+      s2 = s2.replace(x, '')
       count++;
     }
   }

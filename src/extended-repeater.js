@@ -20,7 +20,7 @@ export default function repeater(str, options) {
 
   let additionSeparator = options.additionSeparator ? options.additionSeparator : '|';
   let additionRepeatTimes = options.additionRepeatTimes ? options.additionRepeatTimes : 1;
-  if (options.addition) {
+  if (options.hasOwnProperty("addition")) {
     for (let j = 0; j < additionRepeatTimes; j++) {
       rptAd += '' + options.addition + (j == additionRepeatTimes - 1 ? '' : additionSeparator);
     }

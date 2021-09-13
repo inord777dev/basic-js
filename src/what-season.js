@@ -14,11 +14,11 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function getSeason(date) {
   if (!arguments.length) return 'Unable to determine the time of year!'
 
-  if (typeof date != 'date') throw 'Invalid date!' 
+  //if (!date instanceof Date) throw new Error('Invalid date!') 
 
   const month = date.getMonth();
   if (month < 2 || month == 11)
-    return "summer"
+    return "winter"
   else if (month < 5)
     return "spring"
   else if (month < 8)
