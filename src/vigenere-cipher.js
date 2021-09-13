@@ -44,7 +44,6 @@ export default class VigenereCipheringMachine {
       }
       result.push(String.fromCharCode(x));
     }
-    console.log(key)
     return this.direct ? result.join('') : result.reverse().join('');
   }
 
